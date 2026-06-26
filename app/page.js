@@ -30,7 +30,7 @@ export default function HomePage() {
       }
 
       if (!data.rates || data.rates.length === 0) {
-        setError("No rates were returned. Try a different ZIP or weight.");
+        setError("No rates were found. Try a different ZIP or weight.");
         return;
       }
 
