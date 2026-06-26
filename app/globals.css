@@ -1,6 +1,8 @@
 @font-face {
   font-family: "BringBold Nineties";
-  src: local("BringBold Nineties"), local("BringBoldNineties");
+  src: url("/fonts/BringBoldNineties.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
   font-display: swap;
 }
 
