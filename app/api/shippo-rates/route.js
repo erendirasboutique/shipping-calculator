@@ -5,9 +5,9 @@ function cleanZip(zip) {
 }
 
 function cleanWeight(weight) {
-  const num = Number(weight);
-  if (!Number.isFinite(num) || num <= 0) return null;
-  return num.toFixed(2);
+  const number = Number(weight);
+  if (!Number.isFinite(number) || number <= 0) return null;
+  return number.toFixed(2);
 }
 
 export async function POST(req) {
@@ -19,19 +19,19 @@ export async function POST(req) {
 
     if (!destinationZip || !packageWeight) {
       return NextResponse.json(
-        { error: "Enter a valid ZIP code and package weight." },
+        { error: "Please enter a valid ZIP code and package weight." },
         { status: 400 }
       );
     }
 
     if (!process.env.SHIPPO_API_TOKEN) {
       return NextResponse.json(
-        { error: "Missing SHIPPO_API_TOKEN in your environment variables." },
+        { error: "Missing Shippo API token. Add SHIPPO_API_TOKEN to .env.local or Vercel." },
         { status: 500 }
       );
     }
 
-    const shipmentPayload = {
+    const shipment = {
       address_from: {
         name: process.env.ORIGIN_NAME || "Erendira's Boutique",
         street1: process.env.ORIGIN_STREET || "YOUR BUSINESS STREET",
@@ -69,7 +69,7 @@ export async function POST(req) {
         Authorization: `ShippoToken ${process.env.SHIPPO_API_TOKEN}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(shipmentPayload),
+      body: JSON.stringify(shipment),
     });
 
     const data = await response.json();
@@ -77,7 +77,7 @@ export async function POST(req) {
     if (!response.ok) {
       return NextResponse.json(
         {
-          error: "Shippo could not calculate rates.",
+          error: "Shippo could not calculate rates for this ZIP and weight.",
           details: data,
         },
         { status: response.status }
@@ -97,7 +97,7 @@ export async function POST(req) {
       .sort((a, b) => Number(a.amount) - Number(b.amount));
 
     return NextResponse.json({ rates });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Server error calculating shipping rates." },
       { status: 500 }
