@@ -60,11 +60,11 @@ export default function HomePage() {
 
       <main className="portalCard">
         <section className="cardHeader">
-          <p className="miniLabel">Shippo Rate Estimate</p>
+          <p className="miniLabel"> Shipping Rate Estimate</p>
           <h1>Get your shipping rate</h1>
           <p>
             Enter the destination ZIP code and package weight. Rates are live estimates
-            from the carriers connected to your Shippo account.
+            from eligible carriers.
           </p>
         </section>
 
@@ -75,7 +75,7 @@ export default function HomePage() {
               id="zip"
               value={zip}
               onChange={(event) => setZip(event.target.value)}
-              placeholder="Example: 92335"
+              placeholder="Example: 90210"
               required
             />
           </div>
@@ -86,7 +86,7 @@ export default function HomePage() {
               id="weight"
               value={weight}
               onChange={(event) => setWeight(event.target.value)}
-              placeholder="Example: 1.5"
+              placeholder="Example: 1"
               type="number"
               min="0.1"
               step="0.1"
