@@ -65,7 +65,7 @@ export default function HomePage() {
           <p className="kicker">Live Shipping Estimate</p>
           <h1>Shipping Calculator</h1>
           <p className="lead">
-            Enter your ZIP code and package weight to view live shipping rates through Shippo.
+            Enter your ZIP code and package weight to view live shipping rates.
           </p>
         </section>
 
