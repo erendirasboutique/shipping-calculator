@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: "MDNichrome";
-  src: local("MDNichrome"), local("MD Nichrome"), local("MDNichrome Test");
+  src: local("MDNichrome"), local("MD Nichrome"), local("MDNichrome-Bold");
   font-display: swap;
 }
 
