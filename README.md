@@ -1,35 +1,35 @@
-# Erendira's Boutique Final Shippo Calculator
+# Erendira's Boutique Fixed Shippo Calculator
 
-This final version includes:
-- Your uploaded Erendira's Boutique logo
-- Calculator directly on the homepage
-- No header links
-- Top purple pill button labeled "Shipping Calculator"
-- Solid purple Calculate Shipping button
-- BringBold Nineties for headings
-- MDNichrome for body/buttons/labels/inputs/footer
-- Purple and green accents
-- Floral CSS decorations
-- Shippo live rate API route
+Fixed:
+- Removed green footer background
+- Added thick green footer divider
+- Added `/public/logo.png`
+- Added `/public/eb-logo.png`
+- Wired MDNichrome-Bold font path in CSS
+
+Font file not included because it was not uploaded. Add MDNichrome-Bold.otf or MDNichrome-Bold.ttf to public/fonts.
+
+## Important font step
+
+If the font still shows Arial, place the actual font file here:
+
+```text
+public/fonts/MDNichrome-Bold.otf
+```
+
+or:
+
+```text
+public/fonts/MDNichrome-Bold.ttf
+```
+
+The filename must match exactly.
 
 ## Setup
 
 ```bash
 npm install
-```
-
-Create `.env.local` using `.env.example`, then add your real Shippo token and origin address.
-
-```bash
 npm run dev
 ```
 
-Open:
-
-```text
-http://localhost:3000
-```
-
-## Font note
-
-This project references BringBold Nineties and MDNichrome in CSS using local font names. Because font files should not be shared here, install/add those fonts in your hosting project if they are not already available.
+Create `.env.local` from `.env.example` and add your Shippo API token.
