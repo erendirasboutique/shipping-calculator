@@ -1,35 +1,44 @@
-# Erendira's Boutique Fixed Shippo Calculator
+# Erendira's Boutique Matching Shippo Calculator
 
-Fixed:
-- Removed green footer background
-- Added thick green footer divider
-- Added `/public/logo.png`
-- Added `/public/eb-logo.png`
-- Wired MDNichrome-Bold font path in CSS
+This version is styled to better match the Tracking and Returns portals:
+- Centered logo
+- Purple pill title
+- Purple and green brand accents
+- Floral background details
+- Calculator directly on homepage
+- Matching clean footer with green divider
+- Solid purple Calculate Shipping button
+- Smaller page logo
 
-Font file not included because it was not uploaded. Add MDNichrome-Bold.otf or MDNichrome-Bold.ttf to public/fonts.
+## Origin ZIP
 
-## Important font step
+Add your origin ZIP in `.env.local` locally, or in Vercel Environment Variables:
 
-If the font still shows Arial, place the actual font file here:
+```env
+ORIGIN_ZIP=92335
+```
+
+Also add your full origin address and Shippo token.
+
+## Font
+
+The CSS loads:
 
 ```text
-public/fonts/MDNichrome-Bold.otf
+/public/fonts/MDNichrome-Bold.otf
 ```
 
 or:
 
 ```text
-public/fonts/MDNichrome-Bold.ttf
+/public/fonts/MDNichrome-Bold.ttf
 ```
 
-The filename must match exactly.
+If the font still shows as Arial, the font file is not deployed in that exact location or the filename/extension does not match.
 
-## Setup
+## Run
 
 ```bash
 npm install
 npm run dev
 ```
-
-Create `.env.local` from `.env.example` and add your Shippo API token.

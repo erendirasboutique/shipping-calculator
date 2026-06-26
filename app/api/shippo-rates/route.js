@@ -26,7 +26,7 @@ export async function POST(req) {
 
     if (!process.env.SHIPPO_API_TOKEN) {
       return NextResponse.json(
-        { error: "Missing Shippo API token. Add SHIPPO_API_TOKEN to .env.local or Vercel." },
+        { error: "Missing Shippo API token. Add SHIPPO_API_TOKEN in Vercel environment variables." },
         { status: 500 }
       );
     }

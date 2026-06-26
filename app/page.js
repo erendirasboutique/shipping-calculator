@@ -46,87 +46,89 @@ export default function HomePage() {
 
   return (
     <div className="page">
-      <header className="topHeader">
-        <div className="headerButton">Shipping Calculator</div>
-        <img src="/eb-logo.png" alt="Erendira's Boutique" className="mainLogo" />
+      <div className="backgroundFlower flowerA">✿</div>
+      <div className="backgroundFlower flowerB">✿</div>
+      <div className="backgroundFlower flowerC">✿</div>
+
+      <header className="heroHeader">
+        <div className="portalPill">Shipping Calculator</div>
+        <img src="/logo.png" alt="Erendira's Boutique" className="heroLogo" />
+        <p className="heroText">
+          Calculate estimated shipping rates by ZIP code and package weight before checkout.
+        </p>
       </header>
 
-      <main className="content">
-        <section className="calculatorShell">
-          <div className="flower flowerOne">✿</div>
-          <div className="flower flowerTwo">✿</div>
-          <div className="flower flowerThree">✿</div>
+      <main className="portalCard">
+        <section className="cardHeader">
+          <p className="miniLabel">Shippo Rate Estimate</p>
+          <h1>Get your shipping rate</h1>
+          <p>
+            Enter the destination ZIP code and package weight. Rates are live estimates
+            from the carriers connected to your Shippo account.
+          </p>
+        </section>
 
-          <div className="intro">
-            <h1>Shipping Calculator</h1>
-            <p>
-              Enter your ZIP code and package weight to view live shipping rates
-              through Shippo before checkout.
-            </p>
+        <form className="rateForm" onSubmit={calculateRates}>
+          <div className="field">
+            <label htmlFor="zip">Destination ZIP Code</label>
+            <input
+              id="zip"
+              value={zip}
+              onChange={(event) => setZip(event.target.value)}
+              placeholder="Example: 92335"
+              required
+            />
           </div>
 
-          <form className="form" onSubmit={calculateRates}>
-            <div className="field">
-              <label htmlFor="zip">Destination ZIP Code</label>
-              <input
-                id="zip"
-                value={zip}
-                onChange={(event) => setZip(event.target.value)}
-                placeholder="Example: 92335"
-                required
-              />
+          <div className="field">
+            <label htmlFor="weight">Package Weight</label>
+            <input
+              id="weight"
+              value={weight}
+              onChange={(event) => setWeight(event.target.value)}
+              placeholder="Example: 1.5"
+              type="number"
+              min="0.1"
+              step="0.1"
+              required
+            />
+          </div>
+
+          <button className="primaryButton" disabled={loading}>
+            {loading ? "Calculating..." : "Calculate Shipping"}
+          </button>
+        </form>
+
+        {error && <div className="errorBox">{error}</div>}
+
+        {rates.length > 0 && (
+          <section className="results">
+            <h2>Available Rates</h2>
+
+            <div className="rateGrid">
+              {rates.map((rate, index) => (
+                <article className="rateCard" key={`${rate.provider}-${rate.service}-${index}`}>
+                  <div>
+                    <p className="carrier">{rate.provider}</p>
+                    <h3>{rate.service}</h3>
+
+                    {rate.estimatedDays && (
+                      <p className="rateMeta">
+                        Estimated delivery: {rate.estimatedDays} business days
+                      </p>
+                    )}
+
+                    {rate.durationTerms && (
+                      <p className="rateMeta">{rate.durationTerms}</p>
+                    )}
+                  </div>
+
+                  <p className="price">${rate.amount}</p>
+                </article>
+              ))}
             </div>
-
-            <div className="field">
-              <label htmlFor="weight">Package Weight</label>
-              <input
-                id="weight"
-                value={weight}
-                onChange={(event) => setWeight(event.target.value)}
-                placeholder="Example: 1.5"
-                type="number"
-                min="0.1"
-                step="0.1"
-                required
-              />
-            </div>
-
-            <button className="calculateButton" disabled={loading}>
-              {loading ? "Calculating..." : "Calculate Shipping"}
-            </button>
-          </form>
-
-          {error && <div className="errorBox">{error}</div>}
-
-          {rates.length > 0 && (
-            <section className="results">
-              <h2>Available Rates</h2>
-
-              <div className="rateList">
-                {rates.map((rate, index) => (
-                  <article className="rateCard" key={`${rate.provider}-${rate.service}-${index}`}>
-                    <div>
-                      <p className="provider">{rate.provider}</p>
-                      <h3>{rate.service}</h3>
-
-                      {rate.estimatedDays && (
-                        <p className="rateMeta">
-                          Estimated delivery: {rate.estimatedDays} business days
-                        </p>
-                      )}
-
-                      {rate.durationTerms && (
-                        <p className="rateMeta">{rate.durationTerms}</p>
-                      )}
-                    </div>
-
-                    <p className="ratePrice">${rate.amount}</p>
-                  </article>
-                ))}
-              </div>
-            </section>
-          )}
-        </section>
+          </section>
+        )}
       </main>
 
       <footer className="footer">
